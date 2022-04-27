@@ -176,4 +176,4 @@ exports.fonts = fonts; // Запуск конвертации шрифтов
 
 exports.tottf = tottf; // Запуск конвертации шрифтов в ttf формат
 exports.build = series(cleanDist, html, tottf, fonts, images, styles, scripts, build); // команда используется для конечной сборки проекта (gulp build)
-exports.default = parallel(html, images, styles, fonts, scripts, browsersync, watching); // Команда для запуска непосредственно разработки (gulp)
+exports.default = parallel(html, fonts, images, styles, scripts, browsersync, watching); // Команда для запуска непосредственно разработки (gulp)
