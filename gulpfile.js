@@ -102,6 +102,7 @@ function images() {
     ]
   ))
   .pipe(dest('dist/images'))
+  .pipe(browserSync.stream())
 }
 ///// ОБРАБОТКА JS /////
 function scripts() {
