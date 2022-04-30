@@ -74,6 +74,7 @@ function fonts() {
   .pipe(ttf2woff())
   .pipe(newer('dist/fonts'))
   .pipe(dest('dist/fonts'))
+  .pipe(browserSync.stream())
 }
 
 
