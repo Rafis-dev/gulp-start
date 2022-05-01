@@ -32,6 +32,8 @@ const ttf2woff2 = require('gulp-ttf2woff2');
 const fonter = require('gulp-fonter');
 // Для группировки media запросов в определенном порядке
 const groupcss = require('gulp-group-css-media-queries')
+// Для переименования файлов
+const rename = require('gulp-rename')
 
 
 
@@ -72,6 +74,7 @@ function fonts() {
     .pipe(ttf2woff2())
     .pipe(src('app/fonts/**/*.ttf'))
     .pipe(ttf2woff())
+    .pipe(src('app/fonts/**/*.woff'))
     .pipe(newer('dist/fonts'))
     .pipe(dest('dist/fonts'))
 }
@@ -123,7 +126,8 @@ function scripts() {
 function styles() {
   return src(['node_modules/normalize.css/normalize.css', 'app/sass/style.sass'], { sourcemaps: true })
     .pipe(sass({ outputStyle: 'expanded' }))
-    .pipe(concat('style.css'))
+    //.pipe(concat('style.css')) - из-за этого css стили задваиваются в консоли, поэтому используем *rename*
+    .pipe(rename('style.css'))
     .pipe(webpcss())
     .pipe(autoprefixer({
       grid: true
@@ -133,7 +137,8 @@ function styles() {
     .pipe(dest('dist/css'))
     .pipe(src(['node_modules/normalize.css/normalize.css', 'app/sass/style.sass'], { sourcemaps: true }))
     .pipe(sass({ outputStyle: 'compressed' }))
-    .pipe(concat('style.min.css'))
+    //.pipe(concat('style.min.css')) - из-за этого css стили задваиваются в консоли, поэтому используем *rename*
+    .pipe(rename('style.min.css'))
     .pipe(webpcss())
     .pipe(autoprefixer({
       grid: true
