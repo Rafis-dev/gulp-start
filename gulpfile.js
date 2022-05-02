@@ -32,6 +32,8 @@ const ttf2woff2 = require('gulp-ttf2woff2');
 const fonter = require('gulp-fonter');
 // Для группировки media запросов в определенном порядке
 const groupcss = require('gulp-group-css-media-queries')
+// Для сжати css файлов
+const cleancss = require('gulp-clean-css')
 // Для переименования файлов
 const rename = require('gulp-rename')
 
@@ -126,26 +128,17 @@ function scripts() {
 function styles() {
   return src(['node_modules/normalize.css/normalize.css', 'app/sass/style.sass'], { sourcemaps: true })
     .pipe(sass({ outputStyle: 'expanded' }))
-    //.pipe(concat('style.css')) - из-за этого css стили задваиваются в консоли, поэтому используем *rename*
-    .pipe(rename('style.css'))
+    .pipe(concat('style.css'))
     .pipe(webpcss())
     .pipe(autoprefixer({
       grid: true
     }))
     .pipe(groupcss())
     .pipe(dest('app/css', { sourcemaps: true }))
-    .pipe(dest('dist/css'))
-    .pipe(src(['node_modules/normalize.css/normalize.css', 'app/sass/style.sass'], { sourcemaps: true }))
-    .pipe(sass({ outputStyle: 'compressed' }))
-    //.pipe(concat('style.min.css')) - из-за этого css стили задваиваются в консоли, поэтому используем *rename*
-    .pipe(rename('style.min.css'))
-    .pipe(webpcss())
-    .pipe(autoprefixer({
-      grid: true
-    }))
-    .pipe(groupcss())
+    .pipe(cleancss())
+    .pipe(rename({ suffix: '.min' }))
     .pipe(dest('app/css', { sourcemaps: true }))
-    .pipe(dest('dist/css'))
+    .pipe(dest('dist/css', { sourcemaps: true }))
     .pipe(browserSync.stream())
 }
 
