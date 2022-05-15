@@ -35,9 +35,5 @@
     "jquery": "^3.6.0",
     "normalize.css": "^8.0.1",
     "sass": "^1.50.0"
-  },
-  "dependencies": {
-    "fullpage.js": "^4.0.6",
-    "slick-carousel": "^1.8.1"
   }
 }
