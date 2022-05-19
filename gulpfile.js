@@ -31,11 +31,11 @@ const ttf2woff = require('gulp-ttf2woff');
 const ttf2woff2 = require('gulp-ttf2woff2');
 const fonter = require('gulp-fonter');
 // Для группировки media запросов в определенном порядке
-const groupcss = require('gulp-group-css-media-queries')
+const groupcss = require('gulp-group-css-media-queries');
 // Для сжати css файлов
-const cleancss = require('gulp-clean-css')
+const cleancss = require('gulp-clean-css');
 // Для переименования файлов
-const rename = require('gulp-rename')
+const rename = require('gulp-rename');
 
 
 
