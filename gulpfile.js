@@ -159,7 +159,7 @@ function watching() {
   watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts);
   watch(['app/images/**/*'], images);
   watch(['app/fonts/**/*'], fonts);
-  watch(['app/fonts/**/*'], tottf);
+  // watch(['app/fonts/**/*'], tottf);
   watch(['app/**/*.html'], html).on('all', browserSync.reload);
 }
 
