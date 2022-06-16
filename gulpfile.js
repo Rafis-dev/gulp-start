@@ -115,6 +115,7 @@ function scripts() {
     'node_modules/jquery/dist/jquery.js', //*JQUERY. При ненадобности библиотеки можно строчку закоментировать*
     'app/js/main.js'
   ])
+    .pipe(fileinclude())
     .pipe(concat('main.min.js'))
     .pipe(uglify())
     .pipe(dest('app/js'))
@@ -159,7 +160,7 @@ function watching() {
   watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts);
   watch(['app/images/**/*'], images);
   watch(['app/fonts/**/*'], fonts);
-  // watch(['app/fonts/**/*'], tottf);
+  //watch(['app/fonts/**/*'], tottf);
   watch(['app/**/*.html'], html).on('all', browserSync.reload);
 }
 
