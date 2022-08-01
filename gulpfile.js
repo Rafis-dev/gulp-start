@@ -76,7 +76,7 @@ function fonts() {
     .pipe(ttf2woff2())
     .pipe(src('app/fonts/**/*.ttf'))
     .pipe(ttf2woff())
-    .pipe(src('app/fonts/**/*.woff'))
+    .pipe(src('app/fonts/**/*.{woff,woff2}'))
     .pipe(newer('dist/fonts'))
     .pipe(dest('dist/fonts'))
 }
