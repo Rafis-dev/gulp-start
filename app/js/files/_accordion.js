@@ -7,15 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const self = e.currentTarget;
       const control = self.querySelector('.accordion__control');
       const content = self.querySelector('.accordion__content');
-      // self.classList.toggle('open');
-      // оставляем только верхний закоментированный код, если не нужно, чтобы соседние элементы аккордеона закрывались, в проттивном случае используем нижний if else
-      if (el.classList.contains('open')) {
-        el.classList.remove('open');
-      } else {
-        document.querySelectorAll('.accordion').forEach((child) => child.classList.remove('open'))
-        self.classList.toggle('open');
-      }
-      // Ниже код для скрин-ридеров
+      self.classList.toggle('open');
+
+      // аттрибудты для скрин ридеров
       if (self.classList.contains('open')) {
         control.setAttribute('aria-expanded', true);
         content.setAttribute('aria-hidden', false);
