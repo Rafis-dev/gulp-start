@@ -31,3 +31,12 @@ tabHeaders.forEach(function (item) {
 
   })
 })
+
+// Пагинация в табах
+const pagItem = document.querySelectorAll('.pagination-list__item');
+pagItem.forEach(function (page) {
+  page.addEventListener('click', function () {
+    pagItem.forEach((page) => page.classList.remove('active'));
+    this.classList.add('active');
+  })
+})
