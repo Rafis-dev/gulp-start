@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const content = self.querySelector('.accordion__content');
 
       // document.querySelectorAll('.accordion').forEach((block) => block.classList.remove('open')); этот код для толго, чтобы открывался только один пункт аккордеона за раз. Ниже toggle меняем на add
+      // document.querySelectorAll('.accordion__content').forEach((box) => box.style.maxHeight = null); эта строчка убирает высоту каждого блока который не активен
       self.classList.toggle('open');
       // Ниже код для скрин-ридеров
       if (self.classList.contains('open')) {
