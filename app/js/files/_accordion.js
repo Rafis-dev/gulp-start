@@ -2,10 +2,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const accordions = document.querySelectorAll('.accordion')
   const accordion = document.querySelector('.accordion');
-  const content = accordion.querySelector('.accordion__content');
+  const content1 = accordion.querySelector('.accordion__content');
   // Чтобы одна колонка по умолчанию была открыта
   if (accordion.classList.contains('open')) {
-    content.style.maxHeight = content.scrollHeight + 'px';
+    content1.style.maxHeight = content1.scrollHeight + 'px';
   }
 
   accordions.forEach(el => {
