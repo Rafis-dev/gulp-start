@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const self = e.currentTarget;
       const control = self.querySelector('.accordion__control');
       const content = self.querySelector('.accordion__content');
+
+      // document.querySelectorAll('.accordion').forEach((block) => block.classList.remove('open')); этот код для толго, чтобы открывался только один пункт аккордеона за раз. Ниже toggle меняем на add
       self.classList.toggle('open');
       // Ниже код для скрин-ридеров
       if (self.classList.contains('open')) {
