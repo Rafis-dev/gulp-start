@@ -1,3 +1,26 @@
+// scrollController убирает скролл сайта при открытом модальном окне, так же убирает автоматические скроллы на сайте и дергание сайта с помощию паддинга
+const scrollController = {
+  scrollPosition: 0,
+  disabledScroll() {
+    scrollController.scrollPosition = window.scrollY;
+    document.body.style.cssText = `
+      overflow: hidden;
+      position: fixed;
+      top: -${scrollController.scrollPosition}px;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      padding-right: ${window.innerWidth - document.body.offsetWidth}px
+    `;
+    document.documentElement.style.scrollBehavior = 'unset';
+  },
+  enabledScroll() {
+    document.body.style.cssText = '';
+    window.scroll({ top: scrollController.scrollPosition })
+    document.documentElement.style.scrollBehavior = '';
+  },
+}
+
 const modalController = ({ modal, btnOpen, btnClose, time = 300 }) => {
   const buttonElems = document.querySelectorAll(btnOpen);
   const modalElem = document.querySelector(modal);
@@ -19,9 +42,9 @@ const modalController = ({ modal, btnOpen, btnClose, time = 300 }) => {
       modalElem.style.opacity = 0;
       setTimeout(() => {
         modalElem.style.visibility = 'hidden';
+        scrollController.enabledScroll();
       }, time);
       window.removeEventListener('keydown', closeModal);
-      body.classList.remove('_lock');
     }
   }
 
@@ -30,7 +53,7 @@ const modalController = ({ modal, btnOpen, btnClose, time = 300 }) => {
     modalElem.style.visibility = 'visible';
     modalElem.style.opacity = 1;
     window.addEventListener('keydown', closeModal);
-    body.classList.add('_lock');
+    scrollController.disabledScroll();
   }
   //Открываем модальное окна при клике на кнопку
   buttonElems.forEach(btn => {
