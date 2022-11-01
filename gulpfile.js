@@ -36,6 +36,9 @@ const groupcss = require('gulp-group-css-media-queries');
 const cleancss = require('gulp-clean-css');
 // Для переименования файлов
 const rename = require('gulp-rename');
+// Для сжатия html файлов. Тут в основном, чтобы убрать комментарии в готовом файле
+const htmlmin = require('gulp-htmlmin');
+
 
 
 
@@ -57,6 +60,9 @@ function html() {
   return src('app/*.html')
     .pipe(fileinclude())
     .pipe(webphtml())
+    .pipe(htmlmin({
+      removeComments: true
+    }))
     .pipe(dest('dist'))
     .pipe(browserSync.stream())
 }
