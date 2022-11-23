@@ -38,6 +38,8 @@ const cleancss = require('gulp-clean-css');
 const rename = require('gulp-rename');
 // Для сжатия html файлов. Тут в основном, чтобы убрать комментарии в готовом файле
 const htmlmin = require('gulp-htmlmin');
+// Для преобразования es6 в es5 для поддержки старых браузеров
+const babel = require('gulp-babel');
 
 
 
@@ -118,12 +120,13 @@ function images() {
 ///// ОБРАБОТКА JS /////
 function scripts() {
   return src([
-    'node_modules/jquery/dist/jquery.js', //*JQUERY. При ненадобности библиотеки можно строчку закоментировать*
+    // 'node_modules/jquery/dist/jquery.js', //*JQUERY. При ненадобности библиотеки можно строчку закоментировать*
     'app/js/main.js'
   ])
+    .pipe(babel())
     .pipe(fileinclude())
     .pipe(concat('main.min.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(dest('app/js'))
     .pipe(dest('dist/js'))
     .pipe(browserSync.stream())
